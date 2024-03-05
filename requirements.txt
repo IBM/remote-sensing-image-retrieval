@@ -1,0 +1,11 @@
+torch
+torchvision
+torchgeo
+timm
+numpy
+pandas
+pyyaml
+lshashpy3
+h5py
+milvus
+pymilvus

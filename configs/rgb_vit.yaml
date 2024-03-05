@@ -1,0 +1,19 @@
+model:
+  name: RGB_ViT
+  img_size: 224
+  data_mean:
+    - 5000
+    - 5000
+    - 5000
+  data_std:
+    - 5000
+    - 5000
+    - 5000
+dataset:
+  name: BigEarthNetBGR
+  split: test
+dataloader:
+  batch_size: 16
+  num_workers: 4
+  pin_memory: False
+  shuffle: False
