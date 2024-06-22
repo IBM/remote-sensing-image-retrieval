@@ -12,9 +12,14 @@ from pymilvus import (
     DataType,
     Collection,
 )
+from milvus import default_server
+
+default_server.start()
 
 # Init database
 connections.connect("default", host="localhost", port="19530")
+
+print(utility.get_server_version())
 
 
 def run_experiment(queries, database, data_type='float', length=768):
@@ -101,6 +106,8 @@ def main():
     run_experiment(queries[:1000], database[:100000], data_type='float', length=768)
 
     print('\nUse binary embeddings with length 768')
+    queries = torch.load(os.path.join(output_dir, 'val/embeddings.pt'))
+    database = torch.load(os.path.join(output_dir, 'test/embeddings.pt'))
     queries = (queries > 0).to(int)
     database = (database > 0).to(int)
     queries = [bytes(q) for q in np.packbits(queries, axis=-1)]
@@ -113,6 +120,7 @@ def main():
     print('Experiment with 100K data')
     run_experiment(queries[:1000], database[:100000], data_type='bool', length=768)
 
+    default_server.stop()
 
 if __name__ == '__main__':
     main()

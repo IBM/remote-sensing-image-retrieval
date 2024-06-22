@@ -83,7 +83,7 @@ def init_forestnet(bands, normalize, merge_labels, cfg, *args, **kwargs):
     # Get dataset parameters
     split = cfg['dataset']['split']
 
-    # Get BigEarthNet directory
+    # Get ForestNet directory
     DATA_DIR = os.getenv('DATA_DIR', 'data')
     forestnet_dir = os.path.join(DATA_DIR, 'ForestNetDataset')
 
